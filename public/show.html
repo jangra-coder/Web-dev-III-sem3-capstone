@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book tickets - Book My Show</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header>
+    <a href="/index.html" class="logo">book<span>my</span>show</a>
+    <nav id="nav"></nav>
+  </header>
+
+  <main>
+    <p id="message" class="message"></p>
+
+    <div class="two-columns">
+      <div class="card" id="details"></div>
+
+      <div class="card">
+        <h2>Book tickets</h2>
+        <div id="bookBox"></div>
+        <p id="emailBox"></p>
+      </div>
+    </div>
+  </main>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/common.js"></script>
+  <script src="/js/show.js"></script>
+</body>
+</html>

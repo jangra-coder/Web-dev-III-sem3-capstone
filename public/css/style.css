@@ -1,0 +1,232 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f5f5fa;
+  color: #333;
+}
+
+header {
+  background: #333545;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 30px;
+}
+
+.logo {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.logo span {
+  color: #f84464;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: #f84464;
+}
+
+.hello {
+  color: #ccc;
+}
+
+main {
+  max-width: 1100px;
+  margin: 25px auto;
+  padding: 0 20px;
+}
+
+h1,
+h2 {
+  margin-top: 0;
+}
+
+.filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+input,
+select,
+textarea {
+  padding: 9px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  width: 100%;
+}
+
+.filters input {
+  max-width: 300px;
+}
+
+.filters select {
+  max-width: 160px;
+}
+
+button,
+.btn {
+  background: #f84464;
+  color: white;
+  border: none;
+  padding: 9px 18px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+
+button:hover,
+.btn:hover {
+  background: #dc3558;
+}
+
+button:disabled {
+  background: #aaa;
+  cursor: not-allowed;
+}
+
+.btn-small {
+  padding: 5px 10px;
+  font-size: 13px;
+}
+
+.btn-grey {
+  background: #666;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  border-radius: 8px;
+  padding: 18px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+  margin: 0 0 6px;
+}
+
+.tag {
+  background: #eee;
+  border-radius: 10px;
+  padding: 2px 8px;
+  font-size: 12px;
+}
+
+.small {
+  color: #777;
+  font-size: 14px;
+  margin: 4px 0;
+}
+
+.seats {
+  font-weight: bold;
+  color: #2a8a3e;
+}
+
+.two-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+}
+
+form label {
+  display: block;
+  margin: 10px 0 4px;
+  font-size: 14px;
+}
+
+form button {
+  margin-top: 14px;
+}
+
+.github-btn {
+  background: #24292e;
+  margin-top: 15px;
+}
+
+.github-btn:hover {
+  background: #000;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 9px;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+
+th {
+  background: #333545;
+  color: white;
+}
+
+.message {
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.message:empty {
+  display: none;
+}
+
+.success {
+  background: #e3f6e7;
+  color: #1e6b31;
+}
+
+.error {
+  background: #fde6ea;
+  color: #b0203f;
+}
+
+.status-confirmed {
+  color: #2a8a3e;
+}
+
+.status-cancelled {
+  color: #b0203f;
+}
+
+#activity li {
+  margin-bottom: 6px;
+}
+
+@media (max-width: 700px) {
+  .two-columns {
+    grid-template-columns: 1fr;
+  }
+}

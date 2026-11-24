@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Book My Show</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header>
+    <a href="/index.html" class="logo">book<span>my</span>show</a>
+    <nav id="nav"></nav>
+  </header>
+
+  <main>
+    <h1>Admin dashboard</h1>
+    <p id="message" class="message"></p>
+
+    <div id="adminArea" hidden>
+      <div class="two-columns">
+        <div class="card">
+          <h2 id="formTitle">Add a show</h2>
+          <form id="showForm">
+            <label>Title</label>
+            <input id="title" required>
+            <label>Category</label>
+            <select id="category">
+              <option>Movie</option>
+              <option>Concert</option>
+              <option>Comedy</option>
+              <option>Sports</option>
+              <option>Other</option>
+            </select>
+            <label>Venue</label>
+            <input id="venue" required>
+            <label>Date and time</label>
+            <input type="datetime-local" id="showTime" required>
+            <label>Price per seat (Rs.)</label>
+            <input type="number" id="price" min="0" required>
+            <label>Total seats</label>
+            <input type="number" id="totalSeats" min="1" required>
+            <label>Description</label>
+            <textarea id="description" rows="3"></textarea>
+            <button type="submit" id="saveBtn">Add show</button>
+            <button type="button" id="cancelEditBtn" class="btn-grey" hidden>Cancel edit</button>
+          </form>
+        </div>
+
+        <div class="card">
+          <h2>Live activity</h2>
+          <p class="small">New bookings and cancellations show up here without refreshing.</p>
+          <ul id="activity"></ul>
+        </div>
+      </div>
+
+      <h2 style="margin-top: 30px">Shows</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Venue</th>
+            <th>When</th>
+            <th>Price</th>
+            <th>Seats left</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="showRows"></tbody>
+      </table>
+
+      <h2 style="margin-top: 30px">All bookings</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>User</th>
+            <th>Show</th>
+            <th>Seats</th>
+            <th>Total</th>
+            <th>Status</th>
+            <th>Booked on</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="bookingRows"></tbody>
+      </table>
+    </div>
+  </main>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/common.js"></script>
+  <script src="/js/admin.js"></script>
+</body>
+</html>

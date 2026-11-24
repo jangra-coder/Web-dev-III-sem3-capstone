@@ -28,10 +28,11 @@ bookingEvents.on("bookingCreated", async ({ booking, show, userId }) => {
 
     const previewUrl = await sendMail(user.email, `Booking confirmed - ${show.title}`, html);
 
-    // save the link so it shows on the "My Bookings" page
-    booking.emailPreviewUrl = previewUrl;
+    // remember that the email went out (and the Ethereal link, if there is one)
+    booking.emailSent = true;
+    if (previewUrl) booking.emailPreviewUrl = previewUrl;
     await booking.save();
-    console.log("Confirmation email sent:", previewUrl);
+    console.log("Confirmation email sent to", user.email, previewUrl || "");
 
     // the real-time part (socket.js) listens for this and tells the user
     bookingEvents.emit("emailSent", { booking, userId });

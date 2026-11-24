@@ -68,8 +68,13 @@ async function start() {
 
   // only I get this one (my own room on the server)
   socket.on("emailSent", (data) => {
-    document.getElementById("emailBox").innerHTML =
-      `Your confirmation email is ready: <a href="${data.emailPreviewUrl}" target="_blank">open email</a>`;
+    const box = document.getElementById("emailBox");
+    if (data.emailPreviewUrl) {
+      // local testing: Ethereal test inbox link
+      box.innerHTML = `Your confirmation email is ready: <a href="${data.emailPreviewUrl}" target="_blank">open email</a>`;
+    } else {
+      box.textContent = `Confirmation email sent to ${currentUser.email}`;
+    }
   });
 }
 

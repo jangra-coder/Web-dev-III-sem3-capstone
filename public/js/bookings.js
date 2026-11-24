@@ -22,7 +22,7 @@ async function loadBookings() {
           <td>${b.seats}</td>
           <td>Rs. ${b.totalPrice}</td>
           <td class="status-${b.status}">${b.status}</td>
-          <td>${b.emailPreviewUrl ? `<a href="${b.emailPreviewUrl}" target="_blank">open</a>` : "sending..."}</td>
+          <td>${b.emailPreviewUrl ? `<a href="${b.emailPreviewUrl}" target="_blank">open</a>` : b.emailSent ? "sent" : "-"}</td>
           <td>${canCancel ? `<button class="btn-small" onclick="cancelBooking('${b._id}')">Cancel</button>` : ""}</td>
         </tr>`;
       })

@@ -16,7 +16,7 @@ const daysFromNow = (days, hour, minute = 0) => {
 };
 
 const users = [
-  { name: "Admin", email: "admin@bookmyshow.com", password: "Admin@123", role: "admin" },
+  { name: "Admin", email: "admin@example.com", password: "Admin@123", role: "admin" },
   { name: "Rahul", email: "rahul@example.com", password: "Rahul@123", role: "user" },
 ];
 

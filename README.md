@@ -15,7 +15,7 @@ as they happen.
 | --- | --- |
 | 1. Backend design | Express + MVC folders, MongoDB with Mongoose (User, Show, Booking), route list |
 | 2. Auth | Register / login with bcrypt + JWT, access token (15 min) + refresh token (httpOnly cookie, 7 days), login with GitHub (OAuth), protected routes, roles (user / admin) |
-| 3. CRUD + booking + email | Admin adds / edits / deletes shows, users book and cancel tickets, confirmation email with Nodemailer |
+| 3. CRUD + booking + email | Admin adds / edits / deletes shows, users book and cancel tickets, confirmation email (Nodemailer locally, SendGrid on the live site) |
 | 4. Real-time | EventEmitter + Socket.IO: live seat count for everyone, live booking alerts for admins, "email ready" message for the user |
 | 5. Deploy + docs | API docs, Postman collection, sample data, deployment |
 
@@ -25,7 +25,7 @@ as they happen.
 - MongoDB + Mongoose
 - bcrypt, jsonwebtoken, cookie-parser
 - GitHub OAuth (done with `fetch`, no extra library)
-- Nodemailer (Ethereal test inbox)
+- Nodemailer with an Ethereal test inbox (on my computer) and SendGrid (on the live site)
 - Socket.IO + Node's EventEmitter
 - dotenv, cors
 - Plain HTML, CSS and JavaScript for the pages
@@ -35,7 +35,7 @@ as they happen.
 ```
 config/
   db.js                  connect to MongoDB
-  mailer.js              Nodemailer (Ethereal test inbox)
+  mailer.js              emails: SendGrid if a key is set, else Nodemailer + Ethereal
 models/
   User.js                name, email, passwordHash, githubId, role, refreshToken
   Show.js                title, category, venue, showTime, price, totalSeats, availableSeats
@@ -83,7 +83,7 @@ Bookings keep only the ids of the user and the show (references), and `populate(
 
 | Role | Email | Password |
 | --- | --- | --- |
-| admin | admin@bookmyshow.com | Admin@123 |
+| admin | admin@example.com | Admin@123 |
 | user | rahul@example.com | Rahul@123 |
 
 New accounts made from the register page are always normal users.
@@ -101,6 +101,8 @@ New accounts made from the register page are always normal users.
 | GITHUB_CLIENT_ID | from GitHub | GitHub login |
 | GITHUB_CLIENT_SECRET | from GitHub | GitHub login |
 | GITHUB_CALLBACK_URL | http://localhost:3000/api/auth/github/callback | GitHub login |
+| SENDGRID_API_KEY | (empty on your computer) | only on the live site, real emails |
+| SENDGRID_FROM | your verified sender email | only on the live site |
 
 ### Setting up GitHub login
 
@@ -108,6 +110,11 @@ New accounts made from the register page are always normal users.
 2. Homepage URL: `http://localhost:3000`
 3. Authorization callback URL: `http://localhost:3000/api/auth/github/callback`
 4. Copy the Client ID and a new Client Secret into `.env`
+
+## Emails
+
+- **On my computer** (no SendGrid key): Nodemailer sends to an Ethereal test inbox. Nothing is really delivered, but each booking gets an "open email" link to see the email.
+- **On the live site**: Render's free plan blocks the SMTP ports (25, 465, 587), so Nodemailer can't send from there. When `SENDGRID_API_KEY` is set, `config/mailer.js` sends the same email with SendGrid over https, to the user's real inbox (check spam too).
 
 ## API
 

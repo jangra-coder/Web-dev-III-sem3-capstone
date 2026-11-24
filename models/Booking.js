@@ -14,7 +14,8 @@ const bookingSchema = new mongoose.Schema(
     },
     totalPrice: { type: Number, required: true },
     status: { type: String, enum: ["confirmed", "cancelled"], default: "confirmed" },
-    // link to the confirmation email in the Ethereal test inbox
+    emailSent: { type: Boolean, default: false },
+    // link to the confirmation email in the Ethereal test inbox (only when testing locally)
     emailPreviewUrl: { type: String },
   },
   { timestamps: true }

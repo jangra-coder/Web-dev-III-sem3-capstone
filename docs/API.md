@@ -131,8 +131,9 @@ Error: 400 `This show has bookings, cancel them first`
 ```json
 { "_id": "...", "user": "...", "show": "...", "seats": 2, "totalPrice": 500, "status": "confirmed", "createdAt": "..." }
 ```
-After this the server sends the confirmation email (Ethereal test inbox) and the
-live updates. A few seconds later the booking gets `emailPreviewUrl`.
+After this the server sends the confirmation email and the live updates.
+A few seconds later the booking gets `emailSent: true` (and, when testing locally with
+the Ethereal inbox, an `emailPreviewUrl` link to see the email).
 
 Errors: 400 `You can book 1 to 10 seats`, 400 `Only 3 seats left`, 400 `This show has already started`, 404 `Show not found`
 
@@ -146,7 +147,8 @@ Your bookings, newest first, with show details (populate).
     "seats": 2,
     "totalPrice": 500,
     "status": "confirmed",
-    "emailPreviewUrl": "https://ethereal.email/message/..."
+    "emailSent": true,
+    "emailPreviewUrl": "https://ethereal.email/message/... (only locally)"
   }
 ]
 ```

@@ -3,6 +3,7 @@ require("dotenv").config({ quiet: true }); // must be first, the other files rea
 const http = require("http");
 const app = require("./app");
 const connectDB = require("./config/db");
+require("./events/emailListener"); // registers the "send confirmation email" listener
 
 const PORT = process.env.PORT || 3000;
 const server = http.createServer(app);

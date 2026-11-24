@@ -1,18 +1,23 @@
 // app.js - builds the Express app (no listen here, server.js starts it)
 const express = require("express");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 const path = require("path");
+const authRoutes = require("./routes/authRoutes");
 
 const app = express();
 
 app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
 app.use(express.json()); // JSON body -> req.body
+app.use(cookieParser()); // Cookie header -> req.cookies
 app.use(express.static(path.join(__dirname, "public"))); // the HTML pages
 
 // base route, just to check the API is up
 app.get("/api", (req, res) => {
   res.json({ message: "Book My Show API is running" });
 });
+
+app.use("/api/auth", authRoutes);
 
 // any route that did not match above
 app.use((req, res) => {

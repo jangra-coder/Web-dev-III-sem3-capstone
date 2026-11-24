@@ -6,7 +6,10 @@ const showSchema = new mongoose.Schema(
     title: { type: String, required: [true, "Title is required"], trim: true },
     category: {
       type: String,
-      enum: ["Movie", "Concert", "Comedy", "Sports", "Other"],
+      enum: {
+        values: ["Movie", "Concert", "Comedy", "Sports", "Other"],
+        message: "{VALUE} is not a valid category",
+      },
       default: "Movie",
     },
     description: { type: String, trim: true, default: "" },
